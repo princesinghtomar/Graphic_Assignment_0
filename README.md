@@ -1,4 +1,5 @@
-# Assignemnt 0
+# Assignment 0
+Assignment on OpenGL
 ## Installations :
 > sudo apt - get update
 
