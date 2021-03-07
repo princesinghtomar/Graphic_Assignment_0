@@ -50,7 +50,7 @@ int main(int argc, char* argv[]) {
    }
 
    // Set the clear color to a nice green
-   glClearColor(0.15f, 0.6f, 0.4f, 1.0f);
+   glClearColor(252.0/255.0f, 119.0/255.0f, 3.0/255.0f, 1.0f);
 
    while (!glfwWindowShouldClose(window)) {
       glClear(GL_COLOR_BUFFER_BIT);

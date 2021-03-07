@@ -1,0 +1,1 @@
+/usr/bin/c++ -rdynamic CMakeFiles/Excutables.dir/source/main.cpp.o -o Excutables  libraries/glfw/src/libglfw3.a libglad.a -ldl -lpthread -lrt -lm -ldl 

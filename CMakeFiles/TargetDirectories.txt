@@ -1,0 +1,9 @@
+/home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/rebuild_cache.dir
+/home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/edit_cache.dir
+/home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/glad.dir
+/home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/Excutables.dir
+/home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/libraries/glfw/CMakeFiles/rebuild_cache.dir
+/home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/libraries/glfw/CMakeFiles/edit_cache.dir
+/home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/libraries/glfw/src/CMakeFiles/rebuild_cache.dir
+/home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/libraries/glfw/src/CMakeFiles/edit_cache.dir
+/home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/libraries/glfw/src/CMakeFiles/glfw.dir
