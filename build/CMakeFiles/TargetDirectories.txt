@@ -1,0 +1,9 @@
+/home/bhaeyan/Resources_sem4/Graphic/codes/Hello-World/build/CMakeFiles/rebuild_cache.dir
+/home/bhaeyan/Resources_sem4/Graphic/codes/Hello-World/build/CMakeFiles/edit_cache.dir
+/home/bhaeyan/Resources_sem4/Graphic/codes/Hello-World/build/CMakeFiles/glad.dir
+/home/bhaeyan/Resources_sem4/Graphic/codes/Hello-World/build/CMakeFiles/Hello-World.dir
+/home/bhaeyan/Resources_sem4/Graphic/codes/Hello-World/build/libraries/glfw/CMakeFiles/rebuild_cache.dir
+/home/bhaeyan/Resources_sem4/Graphic/codes/Hello-World/build/libraries/glfw/CMakeFiles/edit_cache.dir
+/home/bhaeyan/Resources_sem4/Graphic/codes/Hello-World/build/libraries/glfw/src/CMakeFiles/rebuild_cache.dir
+/home/bhaeyan/Resources_sem4/Graphic/codes/Hello-World/build/libraries/glfw/src/CMakeFiles/edit_cache.dir
+/home/bhaeyan/Resources_sem4/Graphic/codes/Hello-World/build/libraries/glfw/src/CMakeFiles/glfw.dir

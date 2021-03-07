@@ -1,2 +1,2 @@
-# Graphic_Assignment_0
-Computer Graphic 0th Assignment
+# Hello-World
+Repository with code for students to test their OpenGL installation. 
