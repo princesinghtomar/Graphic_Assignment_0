@@ -2,7 +2,7 @@
 ## Installations :
 > sudo apt-get update
 
-> sudo apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev libglm-dev
+> sudo apt-get install cmake make g++ libx11-dev libxi-dev libgl1-mesa-dev libglu1-mesa-dev libxrandr-dev libxext-dev libxcursor-dev libxinerama-dev libxi-dev
 
 ## Build :
 > cd folder/where/repository/is/stored
