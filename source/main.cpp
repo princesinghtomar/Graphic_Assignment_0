@@ -43,7 +43,7 @@ namespace {
    }
 }
 
-static  unsigned int CompilerShader( unsigned int type, const std::string& source){
+static  unsigned int CompileShader( unsigned int type, const std::string& source){
    unsigned int id = glCreateShader(type);
    const char* src = source.c_str();         // this does not return the array instead returns pointer
    glShaderSource(id,1,&src,nullptr);
@@ -67,8 +67,8 @@ static  unsigned int CompilerShader( unsigned int type, const std::string& sourc
 
 static unsigned  int CreateShader(const std::string& vertexShader, const std::string& fragmentShader){
    unsigned int program = glCreateProgram();
-   unsigned int vs = CompilerShader(GL_VERTEX_SHADER,vertexShader);
-   unsigned int fs = CompilerShader(GL_FRAGMENT_SHADER,fragmentShader);
+   unsigned int vs = CompileShader(GL_VERTEX_SHADER,vertexShader);
+   unsigned int fs = CompileShader(GL_FRAGMENT_SHADER,fragmentShader);
 
    glAttachShader(program,vs);
    glAttachShader(program,fs);
@@ -93,12 +93,12 @@ int main(int argc, char* argv[]) {
    }
 
    // Set the clear color to a nice green
-   glClearColor(252.0/255.0f, 119.0/255.0f, 3.0/255.0f, 1.0f);
+   // glClearColor(252.0/255.0f, 119.0/255.0f, 3.0/255.0f, 1.0f);
 
    float positions[6] = {
       -0.5f,-0.5f,
        0.0f, 0.5f,
-       0.5f,-0.5f 
+       0.5f,-0.5f
    };
 
    unsigned int buffer;
@@ -109,8 +109,8 @@ int main(int argc, char* argv[]) {
    glEnableVertexAttribArray(0);
    glVertexAttribPointer(0,2,GL_FLOAT,GL_FALSE,sizeof(float)*2,0);
 
-   std::string vertexShader = 
-      "#version 330 core\n"
+   std::string vertexShader =
+      "#version 450 core\n"
       "\n"
       "layout(location = 0) in vec4 position;\n"
       "\n"
@@ -118,8 +118,8 @@ int main(int argc, char* argv[]) {
       "{\n"
       "  gl_Position = position;\n"
       "}\n";
-   std::string fragmentShader = 
-      "#version 330 core\n"
+   std::string fragmentShader =
+      "#version 450 core\n"
       "\n"
       "layout(location = 0) out vec4 color;\n"
       "\n"
@@ -131,8 +131,8 @@ int main(int argc, char* argv[]) {
    glUseProgram(shader);
 
    while (!glfwWindowShouldClose(window)) {
-      glClear(GL_COLOR_BUFFER_BIT);
-      
+      // glClear(GL_COLOR_BUFFER_BIT);
+
       glDrawArrays(GL_TRIANGLES, 0, 3);
       // glDrawElements(GL_TRIANGLES, 3,)
 
@@ -141,7 +141,7 @@ int main(int argc, char* argv[]) {
    }
 
    glDeleteProgram(shader);
-   glfwDestroyWindow(window);
+   // glfwDestroyWindow(window);
    glfwTerminate();
 
    return 0;
