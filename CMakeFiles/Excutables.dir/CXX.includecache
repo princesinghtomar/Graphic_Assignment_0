@@ -11,13 +11,7 @@ glad/glad.h
 -
 GLFW/glfw3.h
 -
-glm/glm.hpp
--
 iostream
--
-GL/glut.h
--
-stdio.h
 -
 
 libraries/glad/include/KHR/khrplatform.h
