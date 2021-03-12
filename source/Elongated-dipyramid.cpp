@@ -1,11 +1,10 @@
-
-
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
+#include <math.h>
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 void processInput(GLFWwindow *window);
@@ -130,29 +129,36 @@ int main()
 
    // set up vertex data (and buffer(s)) and configure vertex attributes
    // ------------------------------------------------------------------
+   float val = (1 + (sqrt(2)))/4;
    float vertices[] = {
-      0.5f, 0.5f, 0.5f, 1.0f, 1.0f,0.0f,        // 0
-      -0.5f, 0.5f, 0.5f, 0.0f, 1.0f,0.0f,       // 1
-      0.5f, -0.5f, 0.5f, 1.0f, 0.0f,0.0f,       // 2
-      -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,0.0f,      // 3
-      0.5f, 0.5f, -0.5f, 1.0f, 1.0f,0.0f,       // 4
-      -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,0.0f,      // 5
-      0.5f, -0.5f, -0.5f, 1.0f, 0.0f,0.0f,      // 6
-      -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,0.0f,     // 7
+       0.0f,  0.0f,  val,  1.0f,0.0f,0.0f,   // 0
+       0.25f, 0.25f, 0.25f,1.0f,1.0f,0.0f,   // 1
+       0.25f,-0.25f, 0.25f,1.0f,0.0f,1.0f,   // 2
+      -0.25f, 0.25f, 0.25f,1.0f,1.0f,0.0f,   // 3
+      -0.25f,-0.25f, 0.25f,0.0f,1.0f,1.0f,   // 4
+       0.25f, 0.25f,-0.25f,1.0f,0.0f,1.0f,   // 5 --
+       0.25f,-0.25f,-0.25f,1.0f,1.0f,1.0f,   // 6
+      -0.25f, 0.25f,-0.25f,0.0f,0.0f,0.0f,   // 7
+      -0.25f,-0.25f,-0.25f,0.5f,0.1f,1.3f,   // 8
+       0.0f, 0.0f,  -val,1.3f,0.1f,0.5f      // 9
    };
    unsigned int indices[] = {
-      7,6,4,
-      4,5,7,
-      3,2,0,
+      0,1,2,
       0,1,3,
-      1,5,7,
-      7,3,1,
-      0,4,6,
-      6,2,0,
-      7,6,2,
-      2,3,7,
-      5,4,0,
-      0,1,5
+      0,3,4,
+      0,2,4,
+      9,5,6,
+      9,5,7,
+      9,7,8,
+      9,6,8,
+      1,5,3,
+      5,3,7,
+      3,8,4,
+      7,3,8,
+      1,5,2,
+      5,2,6,
+      2,6,4,
+      6,4,8
    };
 
    unsigned int VBO, VAO, EBO;
@@ -226,6 +232,7 @@ int main()
    // ------------------------------------------------------------------------
    glDeleteVertexArrays(1, &VAO);
    glDeleteBuffers(1, &VBO);
+   glDeleteBuffers(1,&EBO);
    glDeleteProgram(shaderProgram);
 
    // glfw: terminate, clearing all previously allocated GLFW resources.

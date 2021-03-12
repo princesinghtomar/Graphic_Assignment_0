@@ -19,6 +19,8 @@ glm/gtc/type_ptr.hpp
 -
 iostream
 -
+math.h
+-
 
 libraries/glad/include/KHR/khrplatform.h
 stdint.h

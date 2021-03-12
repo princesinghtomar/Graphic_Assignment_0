@@ -6,6 +6,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
+#include <math.h>
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 void processInput(GLFWwindow *window);
@@ -130,29 +131,36 @@ int main()
 
    // set up vertex data (and buffer(s)) and configure vertex attributes
    // ------------------------------------------------------------------
+   float val = (1 + (sqrt(5)))/2;
+   float val1 = pow(val,2)/4;
+   float val2 = sqrt(2+val)/4;
+   float val3 = sqrt(3+val)/4;
    float vertices[] = {
-      0.5f, 0.5f, 0.5f, 1.0f, 1.0f,0.0f,        // 0
-      -0.5f, 0.5f, 0.5f, 0.0f, 1.0f,0.0f,       // 1
-      0.5f, -0.5f, 0.5f, 1.0f, 0.0f,0.0f,       // 2
-      -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,0.0f,      // 3
-      0.5f, 0.5f, -0.5f, 1.0f, 1.0f,0.0f,       // 4
-      -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,0.0f,      // 5
-      0.5f, -0.5f, -0.5f, 1.0f, 0.0f,0.0f,      // 6
-      -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,0.0f,     // 7
+       val1,          val2,          0.25, 1.0f,1.0f,1.0f,  // 0
+       val1,          val2,         -0.25, 1.0f,1.0f,1.0f,  // 1
+       val1,         -val2,          0.25, 1.0f,1.0f,1.0f,  // 2
+       val1,         -val2,         -0.25, 1.0f,1.0f,1.0f,  // 3
+       0.25,          val3,          0.25, 1.0f,1.0f,1.0f,  // 4
+       0.25,          val3,         -0.25, 1.0f,1.0f,1.0f,  // 5
+       0.25,         -val3,          0.25, 1.0f,1.0f,1.0f,  // 6
+       0.25,         -val3,         -0.25, 1.0f,1.0f,1.0f,  // 7
+       val/2,         0.0f,          0.25, 1.0f,1.0f,1.0f,  // 8
+       val/2,         0.0f,         -0.25, 1.0f,1.0f,1.0f,  // 9
+      -val/2,         0.0f,          0.25, 1.0f,1.0f,1.0f,  // 10
+      -val/2,         0.0f,         -0.25, 1.0f,1.0f,1.0f,  // 11
+      -0.25,          val3,          0.25, 1.0f,1.0f,1.0f,  // 12
+      -0.25,          val3,         -0.25, 1.0f,1.0f,1.0f,  // 13
+      -0.25,         -val3,          0.25, 1.0f,1.0f,1.0f,  // 14
+      -0.25,         -val3,         -0.25, 1.0f,1.0f,1.0f,  // 15
+      -val1,          val2,          0.25, 1.0f,1.0f,1.0f,  // 16
+      -val1,          val2,         -0.25, 1.0f,1.0f,1.0f,  // 17
+      -val1,         -val2,          0.25, 1.0f,1.0f,1.0f,  // 18
+      -val1,         -val2,         -0.25, 1.0f,1.0f,1.0f,  // 19
+
    };
-   int indices[] = {
-      7,6,4,
-      4,5,7,
-      3,2,0,
-      0,1,3,
-      1,5,7,
-      7,3,1,
-      0,4,6,
-      6,2,0,
-      7,6,2,
-      2,3,7,
-      5,4,0,
-      0,1,5
+   unsigned int indices[] = {
+      0,1,2,
+      1,2,3
    };
 
    unsigned int VBO, VAO, EBO;
@@ -183,7 +191,7 @@ int main()
    // glBindVertexArray(0);
 
    // uncomment this call to draw in wireframe polygons.
-   glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+   glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
    // render loop
    // -----------
@@ -226,6 +234,7 @@ int main()
    // ------------------------------------------------------------------------
    glDeleteVertexArrays(1, &VAO);
    glDeleteBuffers(1, &VBO);
+   glDeleteBuffers(1,&EBO);
    glDeleteProgram(shaderProgram);
 
    // glfw: terminate, clearing all previously allocated GLFW resources.
