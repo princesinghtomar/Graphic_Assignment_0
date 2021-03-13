@@ -4,7 +4,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
-#include <math.h>
+#include "shapes.cpp"
+#include <assert.h>
 
 // q,w,e,r,t,y ->  camera  movement along different axis
 // a,s,d,f,g,h ->  move object along different axis
@@ -138,38 +139,18 @@ static unsigned int CreateShader(){
 
 int main()
 {
+   int select_val = 0;
+   std::cout << "Enter 0 For \"Decagonal Prism\" \n" << 
+      "Enter 1 for \"Elongated Square Dipyramid\"\n" <<
+      "Enter 2 for \"Hexagonal Dipyramid\"" << std::endl;
+   std::cout<<"Enter your value : "<<std::ends;
+   std::cin >> select_val;
+   assert(select_val >= 0 && select_val <=2);
+   // std::cout << "selected_val : " << select_val << std::endl;
    GLFWwindow *window = initialise();
    glEnable(GL_DEPTH_TEST);  
    unsigned int shaderProgram = CreateShader();
-   float val = (sqrt(3))/4;
-   float vertices[] = {
-      -0.5f,0.0f,0.0f,  0.23f,0.56f,0.2f,    // 0
-      -0.25,val,0.0f,   0.67f,0.1f,0.9f,     // 1
-      0.25,val,0.0f,    0.0f,1.0f,1.0f,     // 2
-      0.5f,0.0f,0.0f,   1.0f,1.0f,0.0f,    // 3
-      0.25,-val,0.0f,   1.0f,0.0f,1.0f,    // 4
-      -0.25,-val,0.0f,  0.3f,0.6f,0.0f,   // 5
-      0.0f,0.0f,0.7f,   0.6f,0.2f,0.5f,    // 6
-      0.0f,0.0f,-0.7f,   0.2f,0.1f,0.6f    // 7
-   };
-   unsigned int indices[] = {
-      0,1,5,
-      2,3,4,
-      1,2,5,
-      2,5,4,
-      0,1,6,
-      1,2,6,
-      2,3,6,
-      3,4,6,
-      4,5,6,
-      0,5,6,
-      0,1,7,
-      1,2,7,
-      2,3,7,
-      3,4,7,
-      4,5,7,
-      0,5,7
-   };
+   // objects : 
    unsigned int VBO, VAO, EBO;
    glGenVertexArrays(1, &VAO);
    glGenBuffers(1, &EBO);
@@ -178,10 +159,19 @@ int main()
    glBindVertexArray(VAO);
 
    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-   glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+   if(select_val == 0){
+      glBufferData(GL_ARRAY_BUFFER, sizeof(dpvertices), dpvertices, GL_STATIC_DRAW);
+      glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(dpindices), dpindices, GL_STATIC_DRAW);
+   }
+   else if(select_val == 1){
+      glBufferData(GL_ARRAY_BUFFER, sizeof(edpvertices), edpvertices, GL_STATIC_DRAW);
+      glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(edpindices), edpindices, GL_STATIC_DRAW);
+   }
+   else if(select_val == 2){
+      glBufferData(GL_ARRAY_BUFFER, sizeof(hdvertices), hdvertices, GL_STATIC_DRAW);
+      glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(hdindices), hdindices, GL_STATIC_DRAW);
+   }
 
 
    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)0);
@@ -241,7 +231,12 @@ int main()
       glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "projection"), 1, GL_FALSE, &projection[0][0]);
       
       glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
-      glDrawElements(GL_TRIANGLES, sizeof(indices)/sizeof(indices[0]),GL_UNSIGNED_INT ,0);
+      if(select_val == 0)
+         glDrawElements(GL_TRIANGLES, sizeof(dpindices)/sizeof(dpindices[0]),GL_UNSIGNED_INT ,0);
+      else if(select_val == 1)
+         glDrawElements(GL_TRIANGLES, sizeof(edpindices)/sizeof(edpindices[0]),GL_UNSIGNED_INT ,0);
+      else if(select_val == 2)
+         glDrawElements(GL_TRIANGLES, sizeof(hdindices)/sizeof(hdindices[0]),GL_UNSIGNED_INT ,0);
       // glBindVertexArray(0); // no need to unbind it every time
 
       // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
