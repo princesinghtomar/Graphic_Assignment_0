@@ -13,6 +13,8 @@
 
 > make
 
+> If these steps didn't worked try again after removing CMakeCache.txt if present
+
 ## Execute :
 > ./executables
 

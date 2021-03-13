@@ -58,3 +58,183 @@ gmake: *** [Makefile:140: cmTC_648d8/fast] Error 2
 
 
 
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_8bce4/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_8bce4.dir/build.make CMakeFiles/cmTC_8bce4.dir/build
+gmake[1]: Entering directory '/home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_8bce4.dir/src.c.o
+/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD -o CMakeFiles/cmTC_8bce4.dir/src.c.o -c /home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_8bce4
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8bce4.dir/link.txt --verbose=1
+/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD CMakeFiles/cmTC_8bce4.dir/src.c.o -o cmTC_8bce4 
+/usr/bin/ld: CMakeFiles/cmTC_8bce4.dir/src.c.o: in function `main':
+src.c:(.text+0x2f): undefined reference to `pthread_create'
+/usr/bin/ld: src.c:(.text+0x3b): undefined reference to `pthread_detach'
+/usr/bin/ld: src.c:(.text+0x47): undefined reference to `pthread_cancel'
+/usr/bin/ld: src.c:(.text+0x58): undefined reference to `pthread_join'
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [CMakeFiles/cmTC_8bce4.dir/build.make:106: cmTC_8bce4] Error 1
+gmake[1]: Leaving directory '/home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:140: cmTC_8bce4/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_67852/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_67852.dir/build.make CMakeFiles/cmTC_67852.dir/build
+gmake[1]: Entering directory '/home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_67852.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create -o CMakeFiles/cmTC_67852.dir/CheckFunctionExists.c.o -c /usr/share/cmake-3.18/Modules/CheckFunctionExists.c
+Linking C executable cmTC_67852
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_67852.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create CMakeFiles/cmTC_67852.dir/CheckFunctionExists.c.o -o cmTC_67852  -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [CMakeFiles/cmTC_67852.dir/build.make:106: cmTC_67852] Error 1
+gmake[1]: Leaving directory '/home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:140: cmTC_67852/fast] Error 2
+
+
+
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_48a86/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_48a86.dir/build.make CMakeFiles/cmTC_48a86.dir/build
+gmake[1]: Entering directory '/home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_48a86.dir/src.c.o
+/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD -o CMakeFiles/cmTC_48a86.dir/src.c.o -c /home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_48a86
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_48a86.dir/link.txt --verbose=1
+/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD CMakeFiles/cmTC_48a86.dir/src.c.o -o cmTC_48a86 
+/usr/bin/ld: CMakeFiles/cmTC_48a86.dir/src.c.o: in function `main':
+src.c:(.text+0x2f): undefined reference to `pthread_create'
+/usr/bin/ld: src.c:(.text+0x3b): undefined reference to `pthread_detach'
+/usr/bin/ld: src.c:(.text+0x47): undefined reference to `pthread_cancel'
+/usr/bin/ld: src.c:(.text+0x58): undefined reference to `pthread_join'
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [CMakeFiles/cmTC_48a86.dir/build.make:106: cmTC_48a86] Error 1
+gmake[1]: Leaving directory '/home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:140: cmTC_48a86/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_a5232/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_a5232.dir/build.make CMakeFiles/cmTC_a5232.dir/build
+gmake[1]: Entering directory '/home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a5232.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create -o CMakeFiles/cmTC_a5232.dir/CheckFunctionExists.c.o -c /usr/share/cmake-3.18/Modules/CheckFunctionExists.c
+Linking C executable cmTC_a5232
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a5232.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create CMakeFiles/cmTC_a5232.dir/CheckFunctionExists.c.o -o cmTC_a5232  -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [CMakeFiles/cmTC_a5232.dir/build.make:106: cmTC_a5232] Error 1
+gmake[1]: Leaving directory '/home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:140: cmTC_a5232/fast] Error 2
+
+
+
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_84ebd/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_84ebd.dir/build.make CMakeFiles/cmTC_84ebd.dir/build
+gmake[1]: Entering directory '/home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_84ebd.dir/src.c.o
+/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD -o CMakeFiles/cmTC_84ebd.dir/src.c.o -c /home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_84ebd
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_84ebd.dir/link.txt --verbose=1
+/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD CMakeFiles/cmTC_84ebd.dir/src.c.o -o cmTC_84ebd 
+/usr/bin/ld: CMakeFiles/cmTC_84ebd.dir/src.c.o: in function `main':
+src.c:(.text+0x2f): undefined reference to `pthread_create'
+/usr/bin/ld: src.c:(.text+0x3b): undefined reference to `pthread_detach'
+/usr/bin/ld: src.c:(.text+0x47): undefined reference to `pthread_cancel'
+/usr/bin/ld: src.c:(.text+0x58): undefined reference to `pthread_join'
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [CMakeFiles/cmTC_84ebd.dir/build.make:106: cmTC_84ebd] Error 1
+gmake[1]: Leaving directory '/home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:140: cmTC_84ebd/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_5caa0/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_5caa0.dir/build.make CMakeFiles/cmTC_5caa0.dir/build
+gmake[1]: Entering directory '/home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_5caa0.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create -o CMakeFiles/cmTC_5caa0.dir/CheckFunctionExists.c.o -c /usr/share/cmake-3.18/Modules/CheckFunctionExists.c
+Linking C executable cmTC_5caa0
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5caa0.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create CMakeFiles/cmTC_5caa0.dir/CheckFunctionExists.c.o -o cmTC_5caa0  -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [CMakeFiles/cmTC_5caa0.dir/build.make:106: cmTC_5caa0] Error 1
+gmake[1]: Leaving directory '/home/bhaeyan/Resources_sem4/Graphic/Assignment/Graphic_Assignment_0/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:140: cmTC_5caa0/fast] Error 2
+
+
+
