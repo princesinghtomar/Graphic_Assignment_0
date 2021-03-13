@@ -1,3 +1,5 @@
+
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
@@ -6,61 +8,12 @@
 #include <iostream>
 #include <math.h>
 
-// q,w,e,r,t,y ->  camera  movement along different axis
-// a,s,d,f,g,h ->  move object along different axis
-// j,k,l -> predecided orientation
-// z -> spin object
-// x -> spin camera
-
-bool x_pressed = false;
-bool z_pressed = false;
-
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 void processInput(GLFWwindow *window);
 
 // settings
 const unsigned int SCR_WIDTH = 1280;
 const unsigned int SCR_HEIGHT = 720;
-const unsigned int r = 10;
-
-glm::vec3 cameraPos   = glm::vec3(0.0f, 0.0f,  3.0f);
-glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
-glm::vec3 cameraUp    = glm::vec3(0.0f, 1.0f,  0.0f);
-glm::vec3 traverse    = glm::vec3(0.0f, 0.0f,  0.0f);
-
-unsigned int distinct_vertices = 10;
-
-float val = (1 + (sqrt(2)))/4;
-float vertices[] = {
-    0.0f,  0.0f,  val,  1.0f,0.0f,0.0f,   // 0
-    0.25f, 0.25f, 0.25f,1.0f,1.0f,0.0f,   // 1
-    0.25f,-0.25f, 0.25f,1.0f,0.0f,1.0f,   // 2
-   -0.25f, 0.25f, 0.25f,1.0f,1.0f,0.0f,   // 3
-   -0.25f,-0.25f, 0.25f,0.0f,1.0f,1.0f,   // 4
-    0.25f, 0.25f,-0.25f,1.0f,0.0f,1.0f,   // 5 --
-    0.25f,-0.25f,-0.25f,1.0f,1.0f,1.0f,   // 6
-   -0.25f, 0.25f,-0.25f,0.0f,0.0f,0.0f,   // 7
-   -0.25f,-0.25f,-0.25f,0.5f,0.1f,1.3f,   // 8
-    0.0f, 0.0f,  -val,1.3f,0.1f,0.5f      // 9
-};
-unsigned int indices[] = {
-   0,1,2,
-   0,1,3,
-   0,3,4,
-   0,2,4,
-   9,5,6,
-   9,5,7,
-   9,7,8,
-   9,6,8,
-   1,5,3,
-   5,3,7,
-   3,8,4,
-   7,3,8,
-   1,5,2,
-   5,2,6,
-   2,6,4,
-   6,4,8
-};
 
 GLFWwindow *initialise()
 {
@@ -178,37 +131,37 @@ int main()
 
    // set up vertex data (and buffer(s)) and configure vertex attributes
    // ------------------------------------------------------------------
-   // float val = (1 + (sqrt(2)))/4;
-   // float vertices[] = {
-   //     0.0f,  0.0f,  val,  1.0f,0.0f,0.0f,   // 0
-   //     0.25f, 0.25f, 0.25f,1.0f,1.0f,0.0f,   // 1
-   //     0.25f,-0.25f, 0.25f,1.0f,0.0f,1.0f,   // 2
-   //    -0.25f, 0.25f, 0.25f,1.0f,1.0f,0.0f,   // 3
-   //    -0.25f,-0.25f, 0.25f,0.0f,1.0f,1.0f,   // 4
-   //     0.25f, 0.25f,-0.25f,1.0f,0.0f,1.0f,   // 5 --
-   //     0.25f,-0.25f,-0.25f,1.0f,1.0f,1.0f,   // 6
-   //    -0.25f, 0.25f,-0.25f,0.0f,0.0f,0.0f,   // 7
-   //    -0.25f,-0.25f,-0.25f,0.5f,0.1f,1.3f,   // 8
-   //     0.0f, 0.0f,  -val,1.3f,0.1f,0.5f      // 9
-   // };
-   // unsigned int indices[] = {
-   //    0,1,2,
-   //    0,1,3,
-   //    0,3,4,
-   //    0,2,4,
-   //    9,5,6,
-   //    9,5,7,
-   //    9,7,8,
-   //    9,6,8,
-   //    1,5,3,
-   //    5,3,7,
-   //    3,8,4,
-   //    7,3,8,
-   //    1,5,2,
-   //    5,2,6,
-   //    2,6,4,
-   //    6,4,8
-   // };
+   float val = (1 + (sqrt(5)))/2;
+   float val1 = pow(val,2)/4;
+   float val2 = sqrt(2+val)/4;
+   float val3 = sqrt(3+val)/4;
+   float vertices[] = {
+       val1,          val2,          0.25, 1.0f,1.0f,1.0f,  // 0
+       val1,          val2,         -0.25, 1.0f,1.0f,1.0f,  // 1
+       val1,         -val2,          0.25, 1.0f,1.0f,1.0f,  // 2
+       val1,         -val2,         -0.25, 1.0f,1.0f,1.0f,  // 3
+       0.25,          val3,          0.25, 1.0f,1.0f,1.0f,  // 4
+       0.25,          val3,         -0.25, 1.0f,1.0f,1.0f,  // 5
+       0.25,         -val3,          0.25, 1.0f,1.0f,1.0f,  // 6
+       0.25,         -val3,         -0.25, 1.0f,1.0f,1.0f,  // 7
+       val/2,         0.0f,          0.25, 1.0f,1.0f,1.0f,  // 8
+       val/2,         0.0f,         -0.25, 1.0f,1.0f,1.0f,  // 9
+      -val/2,         0.0f,          0.25, 1.0f,1.0f,1.0f,  // 10
+      -val/2,         0.0f,         -0.25, 1.0f,1.0f,1.0f,  // 11
+      -0.25,          val3,          0.25, 1.0f,1.0f,1.0f,  // 12
+      -0.25,          val3,         -0.25, 1.0f,1.0f,1.0f,  // 13
+      -0.25,         -val3,          0.25, 1.0f,1.0f,1.0f,  // 14
+      -0.25,         -val3,         -0.25, 1.0f,1.0f,1.0f,  // 15
+      -val1,          val2,          0.25, 1.0f,1.0f,1.0f,  // 16
+      -val1,          val2,         -0.25, 1.0f,1.0f,1.0f,  // 17
+      -val1,         -val2,          0.25, 1.0f,1.0f,1.0f,  // 18
+      -val1,         -val2,         -0.25, 1.0f,1.0f,1.0f,  // 19
+
+   };
+   unsigned int indices[] = {
+      0,1,2,
+      1,2,3
+   };
 
    unsigned int VBO, VAO, EBO;
    glGenVertexArrays(1, &VAO);
@@ -256,24 +209,11 @@ int main()
       // draw our first triangle
       glUseProgram(shaderProgram);
       glm::mat4 model = glm::mat4(1.0f);
-      glm::mat4 view;
-      // view :
-      if(!x_pressed){
-         view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
-      }
-      else {
-         view = glm::lookAt(glm::vec3(sin(glfwGetTime()) * r, 0.0, cos(glfwGetTime()) * r),
-          cameraPos + cameraFront, cameraUp);
-      }
-      // for(int  i=0 ;i < 3;i++){
-         // std::cout << "cameraPos : " << cameraPos[i] << std::endl;
-      // }
+      glm::mat4 view = glm::mat4(1.0f);
       glm::mat4 projection = glm::mat4(1.0f);
-      if(z_pressed){
-         model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.0f, 1.0f, 0.0f));      // used to rotate object
-      }
-      view = glm::translate(view, traverse);                          // used for camera change
-      projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);     // for percpective
+      model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.5f, 1.0f, 0.0f));
+      view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+      projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
       unsigned int modelLoc = glGetUniformLocation(shaderProgram,"model");
       unsigned int viewLoc = glGetUniformLocation(shaderProgram, "view");
       glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -306,60 +246,9 @@ int main()
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
 void processInput(GLFWwindow *window)
-{  
-   if((z_pressed & x_pressed)){
-      z_pressed = false;
-      x_pressed = false;
-   }
-   else if(z_pressed){
-      x_pressed = false;
-   }
-   else if(x_pressed){
-      z_pressed = false;
-   }
-   // escape part (ESC-key): 
+{
    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
       glfwSetWindowShouldClose(window, true);
-   // camera part (6-key):
-   if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
-      cameraPos += glm::vec3(0.1f,0.0f,0.0f);
-   if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-      cameraPos -= glm::vec3(0.1f,0.0f,0.0f);
-   if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
-      cameraPos += glm::vec3(0.0f,0.1f,0.0f);
-   if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
-      cameraPos -= glm::vec3(0.0f,0.1f,0.0f);
-   if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS)
-      cameraPos += glm::vec3(0.0f,0.0f,0.1f);
-   if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
-      cameraPos -= glm::vec3(0.0f,0.0f,0.1f);
-   // travese part (6-key): 
-   if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-      traverse += glm::vec3(0.1f,0.0f,0.0f);
-   if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-      traverse -= glm::vec3(0.1f,0.0f,0.0f);
-   if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-      traverse += glm::vec3(0.0f,0.1f,0.0f);
-   if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
-      traverse -= glm::vec3(0.0f,0.1f,0.0f);
-   if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
-      traverse += glm::vec3(0.0f,0.0f,0.1f);
-   if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
-      traverse -= glm::vec3(0.0f,0.0f,0.1f);
-   // fixed camera positions :
-   if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
-      cameraPos = glm::vec3(1.0f,-1.0f,0.1f);
-   if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS)
-      cameraPos = glm::vec3(0.0f,0.0f,0.1f);
-   if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS)
-      cameraPos = glm::vec3(0.5f,0.5f,0.1f);
-
-   // Spining part : 
-   if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
-      z_pressed = true;
-   if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS){
-      x_pressed = true;
-   }
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
