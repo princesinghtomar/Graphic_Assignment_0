@@ -28,40 +28,6 @@ glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 glm::vec3 cameraUp    = glm::vec3(0.0f, 1.0f,  0.0f);
 glm::vec3 traverse    = glm::vec3(0.0f, 0.0f,  0.0f);
 
-unsigned int distinct_vertices = 10;
-
-float val = (1 + (sqrt(2)))/4;
-float vertices[] = {
-    0.0f,  0.0f,  val,  1.0f,0.0f,0.0f,   // 0
-    0.25f, 0.25f, 0.25f,1.0f,1.0f,0.0f,   // 1
-    0.25f,-0.25f, 0.25f,1.0f,0.0f,1.0f,   // 2
-   -0.25f, 0.25f, 0.25f,1.0f,1.0f,0.0f,   // 3
-   -0.25f,-0.25f, 0.25f,0.0f,1.0f,1.0f,   // 4
-    0.25f, 0.25f,-0.25f,1.0f,0.0f,1.0f,   // 5 --
-    0.25f,-0.25f,-0.25f,1.0f,1.0f,1.0f,   // 6
-   -0.25f, 0.25f,-0.25f,0.0f,0.0f,0.0f,   // 7
-   -0.25f,-0.25f,-0.25f,0.5f,0.1f,1.3f,   // 8
-    0.0f, 0.0f,  -val,1.3f,0.1f,0.5f      // 9
-};
-unsigned int indices[] = {
-   0,1,2,
-   0,1,3,
-   0,3,4,
-   0,2,4,
-   9,5,6,
-   9,5,7,
-   9,7,8,
-   9,6,8,
-   1,5,3,
-   5,3,7,
-   3,8,4,
-   7,3,8,
-   1,5,2,
-   5,2,6,
-   2,6,4,
-   6,4,8
-};
-
 GLFWwindow *initialise()
 {
    // glfw: initialize and configure
@@ -175,71 +141,35 @@ int main()
    GLFWwindow *window = initialise();
    glEnable(GL_DEPTH_TEST);  
    unsigned int shaderProgram = CreateShader();
-   float val = (1 + (sqrt(5)))/2;
-   float val1 = pow(val,2)/4;
-   float val2 = sqrt(2+val)/4;
-   float val3 = sqrt(3+val)/4;
+   float val = (sqrt(3))/4;
    float vertices[] = {
-       val1,  val2, 0.25, 1.0f,0.0f,0.0f,  // 0
-      -val1,  val2, 0.25, 1.0f,0.0f,0.0f,  // 1
-       0.25,  val3, 0.25, 0.0f,1.0f,0.0f,  // 2
-      -0.25,  val3, 0.25, 0.0f,0.0f,1.0f,  // 3
-       val/2, 0.0f, 0.25, 0.0f,0.0f,1.0f,  // 4
-      -val/2, 0.0f, 0.25, 0.0f,1.0f,0.0f,  // 5
-       val1, -val2, 0.25, 0.0f,1.0f,0.0f,  // 6
-      -val1, -val2, 0.25, 1.0f,0.0f,0.0f,  // 7
-       0.25, -val3, 0.25, 1.0f,0.0f,0.0f,  // 8
-      -0.25, -val3, 0.25, 0.0f,0.0f,1.0f,  // 9
-       val1,  val2,-0.25, 1.0f,0.0f,0.0f,  // 10
-      -val1,  val2,-0.25, 1.0f,0.0f,0.0f,  // 11
-       0.25,  val3,-0.25, 0.0f,1.0f,0.0f,  // 12
-      -0.25,  val3,-0.25, 0.0f,0.0f,1.0f,  // 13
-       val/2, 0.0f,-0.25, 0.0f,0.0f,1.0f,  // 14
-      -val/2, 0.0f,-0.25, 0.0f,1.0f,0.0f,  // 15
-       val1, -val2,-0.25, 0.0f,1.0f,0.0f,  // 16
-      -val1, -val2,-0.25, 1.0f,0.0f,0.0f,  // 17
-       0.25, -val3,-0.25, 1.0f,0.0f,0.0f,  // 18
-      -0.25, -val3,-0.25, 0.0f,0.0f,1.0f,  // 19
+      -0.5f,0.0f,0.0f,  0.23f,0.56f,0.2f,    // 0
+      -0.25,val,0.0f,   0.67f,0.1f,0.9f,     // 1
+      0.25,val,0.0f,    0.0f,1.0f,1.0f,     // 2
+      0.5f,0.0f,0.0f,   1.0f,1.0f,0.0f,    // 3
+      0.25,-val,0.0f,   1.0f,0.0f,1.0f,    // 4
+      -0.25,-val,0.0f,  0.3f,0.6f,0.0f,   // 5
+      0.0f,0.0f,0.7f,   0.6f,0.2f,0.5f,    // 6
+      0.0f,0.0f,-0.7f,   0.2f,0.1f,0.6f    // 7
    };
    unsigned int indices[] = {
-      1,5,7,
-      1,3,7,
-      3,7,9,
-      2,3,9,
-      2,8,9,
-      2,0,8,
-      0,6,8,
-      0,4,6,
-      11,15,17,
-      11,13,17,
-      13,17,19,
-      12,13,19,
-      12,18,19,
-      12,10,18,
-      10,16,18,
-      10,14,16,
-      5,11,15,
-      1,5,11,
-      3,11,13,
-      1,3,11,
-      3,12,13,
-      2,3,12,
-      0,12,10,
-      2,0,12,
-      0,14,10,
-      4,0,14,
-      6,14,16,
-      4,6,14,
-      6,18,16,
-      8,6,18,
-      9,18,19,
-      8,9,18,
-      9,17,19,
-      7,9,17,
-      5,17,15,
-      7,5,17
+      0,1,5,
+      2,3,4,
+      1,2,5,
+      2,5,4,
+      0,1,6,
+      1,2,6,
+      2,3,6,
+      3,4,6,
+      4,5,6,
+      0,5,6,
+      0,1,7,
+      1,2,7,
+      2,3,7,
+      3,4,7,
+      4,5,7,
+      0,5,7
    };
-
    unsigned int VBO, VAO, EBO;
    glGenVertexArrays(1, &VAO);
    glGenBuffers(1, &EBO);
@@ -268,7 +198,7 @@ int main()
    // glBindVertexArray(0);
 
    // uncomment this call to draw in wireframe polygons.
-   glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+   glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
    // render loop
    // -----------
