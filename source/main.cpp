@@ -302,12 +302,22 @@ void processInput(GLFWwindow *window)
    if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
       traverse -= glm::vec3(0.0f,0.0f,0.1f);
    // fixed camera positions :
-   if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
-      cameraPos = glm::vec3(-1.0f,0.0f,0.1f);
-   if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS)
-      cameraPos = glm::vec3(0.0f,0.0f,0.1f);
-   if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS)
-      cameraPos = glm::vec3(0.5f,0.5f,0.1f);
+   if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS){
+      cameraPos = glm::vec3(0.0f,0.0f,3.0f);
+      cameraFront = glm::vec3(0.0f,0.0f,-1.0f);
+      cameraUp = glm::vec3(0.0f,1.0f,0.0f);
+   }
+   if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS){
+      cameraPos = glm::vec3(0.0f,3.0f,0.0f);
+      cameraFront = glm::vec3(0.0f,-1.0f,0.0f);
+      cameraUp = glm::vec3(0.0f,0.0f,1.0f);
+
+   }
+   if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS){
+      cameraPos = glm::vec3(3.0f,0.0f,0.0f);
+      cameraFront = glm::vec3(-1.0f,0.0f,0.0f);
+      cameraUp = glm::vec3(0.0f,1.0f,0.0f);
+   }
 
    // Spining part : 
    if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
