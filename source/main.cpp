@@ -212,8 +212,9 @@ int main()
          view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
       }
       else {
+         traverse = glm::vec3(0,0,0);
          view = glm::lookAt(glm::vec3(sin(glfwGetTime()) * r, 0.0, cos(glfwGetTime()) * r),
-          cameraPos + cameraFront, cameraUp);
+          glm::vec3(0,0,0), cameraUp);
       }
       // for(int  i=0 ;i < 3;i++){
          // std::cout << "cameraPos : " << cameraPos[i] << std::endl;

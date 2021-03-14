@@ -16,7 +16,7 @@
 > If these steps didn't worked try again after removing CMakeCache.txt if present
 
 ## Execute :
-> ./executables
+> ./excutables
 
 ## make changes :
 - Code is present in `source` folder, So all required changes can be made by changing `main.cpp` and other related files.
